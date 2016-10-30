@@ -1,7 +1,6 @@
 int mf,f,s,t,n;
 int res[N][N];
 vi p;
-string A[]={"","XXL","XL","L","M","S","XS"};
 inline int ai(string str)
 {
     for(int i=1;i<7;i++)
