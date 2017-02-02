@@ -25,3 +25,12 @@ void preL(int n)
                 if(par[i-1][j] != -1)
                     par[i][j] = par[i-1][par[i-1][j]];
 }
+int pth(int u, int p)
+{
+    for(int i=3;i>=0;i--)
+        if(p&(1<<i))
+    {
+        u=par[i][u];
+    }
+    return u;
+}
