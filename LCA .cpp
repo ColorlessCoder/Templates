@@ -2,6 +2,16 @@ int par[17][N];
 /*
 first generate depth and par
 */
+void dfs0(int u,int prev,int d)
+{
+    depth[u]=d;
+    par[0][u]=prev;
+    int z=E[u].size();
+    for(int i=0;i<z;i++)
+        if(E[u][i]!=prev)
+        dfs0(E[u][i],u,d+1);
+    return;
+}
 int lca(int u, int v)
 {
     if(depth[u] < depth[v]) swap(u,v);
