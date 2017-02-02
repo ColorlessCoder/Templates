@@ -37,7 +37,7 @@ void preL(int n)
 }
 int pth(int u, int p)
 {
-    for(int i=3;i>=0;i--)
+    for(int i=16;i>=0;i--)
         if(p&(1<<i))
     {
         u=par[i][u];
