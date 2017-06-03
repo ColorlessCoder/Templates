@@ -48,3 +48,11 @@ void constructSA() {         // this version can go up to 100000 characters
       RA[i] = tempRA[i];
     if (RA[SA[n-1]] == n-1) break;               // nice optimization trick
 } }
+int main()
+{
+  scanf("%s",T);
+  n=strlen(T);
+  T[n]='$'; 
+  constructSA();
+  //for integer replace $ with lower_bound-1
+}
