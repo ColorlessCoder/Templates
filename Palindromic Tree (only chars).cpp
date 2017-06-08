@@ -10,13 +10,15 @@ struct PalindromicTree {
     **/
     struct state {
         int next[26];
+        //map<char,int> next;
         int len, link;
     };
 
-    string s;
+    char s[MAXLEN];
     vector <state> tree;
     int sz;
     int last;
+    int longest;
 
     ///For finding total number of palindromes
     vector <long long> cnt;
@@ -28,7 +30,8 @@ struct PalindromicTree {
     **/
     void init(int i)
     {
-      memset(tree[i].next,-1,sizeof(tree[i].next));
+      //tree[i].next.clear();
+     memset(tree[i].next,-1,sizeof(tree[i].next));
     }
     PalindromicTree() {
         tree = vector <state> (MAXLEN);
@@ -40,12 +43,14 @@ struct PalindromicTree {
         init(1);
         tree[2].len = 0; tree[2].link = 1;
         init(2);
+        longest=0;
     }
-    void buildTree(string& str) {
-        s = str;
-        int n = s.size();
+    void buildTree(char *str) {;
+        int n = strlen(str);
+        memcpy(s,str,n+1);
         for (int i = 0; i < n; i++) {
-            Insert(i, s[i]);
+            Insert(i, s[i]-'a');
+           // Insert(i, s[i]);
         }
         return;
     }
@@ -61,22 +66,24 @@ struct PalindromicTree {
                 break;
             cur = tree[cur].link;
         }
-
-        if (tree[cur].next[c-'a']!=-1) {
-            last = tree[cur].next[c-'a'];
-            //cnt[last]++;
+        //if (tree[cur].next[c]) {
+        
+        if (tree[cur].next[c]!=-1) {
+            last = tree[cur].next[c];
+            cnt[last]++;
             // Common , !Unique
             return false;
         }
         sz++;
         last = sz;
         tree[sz].len = tree[cur].len + 2;
+        longest=max(longest,tree[sz].len);
         init(sz);
-        tree[cur].next[c-'a'] = sz;
+        tree[cur].next[c] = sz;
 
         if (tree[sz].len == 1) {
             tree[sz].link = 2;
-            //cnt[sz] = 1;
+            cnt[sz] = 1;
             return true;
         }
 
@@ -84,11 +91,11 @@ struct PalindromicTree {
             cur = tree[cur].link;
             curlen = tree[cur].len;
             if (pos - 1 - curlen >= 0 && s[pos - 1 - curlen] == s[pos]) {
-                tree[sz].link = tree[cur].next[c-'a'];
+                tree[sz].link = tree[cur].next[c];
                 break;
             }
         }
-        //cnt[sz] = 1;
+        cnt[sz] = 1;
         return true;
       }
     /**
@@ -109,3 +116,4 @@ struct PalindromicTree {
 
    
 };
+char str[MAXLEN];
