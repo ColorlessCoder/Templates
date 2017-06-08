@@ -62,8 +62,8 @@ struct PalindromicTree {
             cur = tree[cur].link;
         }
 
-        if (tree[cur].next[c]!=-1) {
-            last = tree[cur].next[c];
+        if (tree[cur].next[c-'a']!=-1) {
+            last = tree[cur].next[c-'a'];
             //cnt[last]++;
             // Common , !Unique
             return false;
@@ -72,7 +72,7 @@ struct PalindromicTree {
         last = sz;
         tree[sz].len = tree[cur].len + 2;
         init(sz);
-        tree[cur].next[c] = sz;
+        tree[cur].next[c-'a'] = sz;
 
         if (tree[sz].len == 1) {
             tree[sz].link = 2;
@@ -84,7 +84,7 @@ struct PalindromicTree {
             cur = tree[cur].link;
             curlen = tree[cur].len;
             if (pos - 1 - curlen >= 0 && s[pos - 1 - curlen] == s[pos]) {
-                tree[sz].link = tree[cur].next[c];
+                tree[sz].link = tree[cur].next[c-'a'];
                 break;
             }
         }
