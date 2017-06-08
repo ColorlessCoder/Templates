@@ -1,4 +1,5 @@
 /***************************************************************************************
+ *     From Matrix.Code Codeforces
  *     Suffix Array Implementation O(nlog n)
  *     Definition : suffix(i) => substring [i,n-1]
  *     Input : STRING (inpStr) , sigma => Character Set Size
