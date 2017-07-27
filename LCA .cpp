@@ -1,3 +1,5 @@
+
+int depth[N];
 int par[17][N];
 /*
 first generate depth and par
