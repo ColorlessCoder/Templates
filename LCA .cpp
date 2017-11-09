@@ -1,6 +1,6 @@
 
 int depth[N];
-int par[17][N];
+int par[17][N];  /// initialized with -1
 /*
 first generate depth and par
 */
